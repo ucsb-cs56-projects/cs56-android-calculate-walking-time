@@ -1,3 +1,5 @@
 <resources>
+    <string name="google_maps_API_key">AIzaSyAd2o6ZGxPc3RHQFYIV5_z7CyjGyiwPIRA</string>
+
     <string name="app_name">Campus Commute</string>
 </resources>
