@@ -14,4 +14,15 @@
         <item>North</item>
     </string-array>
 
+     /<string name ="location">Choose 2nd location </string>
+    <string name="Calculate">Calculate</string>
+    <string-array name="location">
+        <item>Harold Frank</item>
+        <item>Buchanan</item>
+        <item>Campbell</item>
+        <item>Phelps</item>
+        <item>HSSB</item>
+        <item>North</item>
+    </string-array>
+
 </resources>

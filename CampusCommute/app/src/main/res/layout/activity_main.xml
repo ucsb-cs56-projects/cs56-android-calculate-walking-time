@@ -2,9 +2,10 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    tools:context="ucsb_cs56.campuscommute.MainActivity"
+    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="ucsb_cs56.campuscommute.MainActivity">
+    android:layout_height="wrap_content">
 
 
 
@@ -16,18 +17,39 @@
         android:layout_height="559dp"
         tools:context="com.example.mapwithmarker.MapsMarkerActivity">
 
-    <Spinner
-        android:id="@+id/LocationMenu"
-        android:labelFor="@+id/LocationMenu"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:entries="@array/location_arrays"
-        android:prompt="@string/location_prompt"
-        android:background="@android:drawable/btn_dropdown"
-        android:spinnerMode="dropdown"
-        android:visibility="visible" />
-        </fragment>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <Spinner
+                android:id="@+id/LocationMenu"
+                android:labelFor="@+id/LocationMenu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:entries="@array/location_arrays"
+                android:prompt="@string/location_prompt"
+                android:background="@android:drawable/btn_dropdown"
+                android:spinnerMode="dropdown"
+                android:visibility="visible" />
+            <Spinner
+                android:id="@+id/LocationMenu2"
+                android:labelFor="@+id/LocationMenu2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:entries="@array/location_arrays"
+                android:prompt="@string/location_prompt"
+                android:background="@android:drawable/btn_dropdown"
+                android:spinnerMode="dropdown"
+                android:visibility="visible" />
+            <Button
+                android:id="@+id/button_id"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="@string/Calculate"
+                android:visibility="visible" />
 
+        </LinearLayout>
+    </fragment>
 
 
 </LinearLayout>
