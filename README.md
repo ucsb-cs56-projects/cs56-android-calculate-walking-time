@@ -17,7 +17,13 @@
 ### Current User Flow (what we accomplished) 
 1. The user opens up the applications
 2. A map is displayed with the location set to UCSB 
-3. The user can now either simply display a classroom, by choosing it from the spinner list. 
+3. The user can now simply display a classroom, by choosing it from the spinner list. 
+4. The user can also pick two different classrooms, one on each spinner. 
+5. The user can now press calculate, and the estimated walking time will be displayed. 
+
+![alt text](https://github.com/ajitvijay/cs56-android-calculate-walking-time/blob/master/campusCommuteWireframe/Sceenshot1.png)
+![alt text](https://github.com/ajitvijay/cs56-android-calculate-walking-time/blob/master/campusCommuteWireframe/Screenshot2.png)
+![alt text](https://github.com/ajitvijay/cs56-android-calculate-walking-time/blob/master/campusCommuteWireframe/Screenshot3.png)
 
 ### Ideas for the future (some of these features can be seen in the sketches below)
 1. Inputting a more comphrensive list of campus locations 
