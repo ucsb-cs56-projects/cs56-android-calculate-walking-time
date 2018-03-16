@@ -22,7 +22,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-public class MainActivity extends AppCompatActivity implements OnMapReadyCallback {
+public class MainActivity extends AppCompatActivity implements OnMapReadyCallback, AdapterView.OnItemSelectedListener{
 
     private static final String TAG = "MainActivity";
 
@@ -35,7 +35,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     private Marker mMarker2 = null;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,19 +42,19 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         if (isServicesOK()) init();
         Spinner dropdown = findViewById(R.id.LocationMenu);
+        dropdown.setTag(0);
         Spinner second = findViewById(R.id.LocationMenu2);
-        if (dropdown != null) {
-            dropdown.setOnItemSelectedListener(new Spinner1Activity());
-        }
-        if(second != null) {
-            second.setOnItemSelectedListener(new Spinner2Activity());
-        }
-        final Button alertButton = findViewById(R.id.button_id);
+        second.setTag(1);
+
+        dropdown.setOnItemSelectedListener(this);
+        second.setOnItemSelectedListener(this);
+
+        Button alertButton = findViewById(R.id.button_id);
         alertButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
                 builder.setTitle("Time: 3 Minutes");
-                builder.setNegativeButton("Ok",null);
+                builder.setNegativeButton("Ok", null);
                 AlertDialog alertDialog = builder.create();
                 alertDialog.show();
             }
@@ -94,82 +93,44 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         this.mMarker2 = googleMap.addMarker(new MarkerOptions().position(ucsb)
                 .title("2nd Marker in UCSB"));
     }
-    class Spinner1Activity implements Spinner.OnItemSelectedListener {
 
-        public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-            switch (i) {
-                case 0:
-                    if (mMarker != null)
-                        mMarker.setPosition(new LatLng(34.415017, -119.841571));
-                    break;
-                case 1:
-                    if (mMarker != null)
-                        mMarker.setPosition(new LatLng(34.41623, -119.845262));
-                    break;
-                case 2:
-                    if (mMarker != null)
-                        mMarker.setPosition(new LatLng(34.415372, -119.84274));
-                    break;
-                case 3:
-                    if (mMarker != null)
-                        mMarker.setPosition(new LatLng(34.415323, -119.843974));
-                    break;
-                case 4:
-                    if (mMarker != null)
-                        mMarker.setPosition(new LatLng(34.411539, -119.847772));
-                    break;
-                case 5:
-                    if (mMarker != null)
-                        mMarker.setPosition(new LatLng(34.416385, -119.84435));
-                    break;
-
-            }
+    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+        LatLng latlng;
+        switch (i) {
+            case 0:
+                latlng = new LatLng(34.415017, -119.841571);
+                break;
+            case 1:
+                latlng = new LatLng(34.41623, -119.845262);
+                break;
+            case 2:
+                latlng = new LatLng(34.415372, -119.84274);
+                break;
+            case 3:
+                latlng = new LatLng(34.415323, -119.843974);
+                break;
+            case 4:
+                latlng = new LatLng(34.411539, -119.847772);
+                break;
+            case 5:
+                latlng = new LatLng(34.416385, -119.84435);
+                break;
+            default:
+                latlng = new LatLng(34.413963, -119.848946);
+                break;
         }
-
-        @Override
-        public void onNothingSelected(AdapterView<?> adapterView) {
-
+        if((Integer)adapterView.getTag() == 1){
+            mMarker2.setPosition(latlng);
+        }else{
+            mMarker.setPosition(latlng);
         }
     }
 
-    class Spinner2Activity implements Spinner.OnItemSelectedListener {
 
-        @Override
-        public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-            switch (i) {
-                case 0:
-                    if (mMarker2 != null)
-                        mMarker2.setPosition(new LatLng(34.415017, -119.841571));
-                    break;
-                case 1:
-                      if (mMarker2 != null)
-                        mMarker2.setPosition(new LatLng(34.41623, -119.845262));
-                    break;
-                case 2:
-                    if (mMarker2 != null)
-                      mMarker2.setPosition(new LatLng(34.415372, -119.84274));
-                    break;
-                case 3:
-                    if (mMarker2 != null)
-                        mMarker2.setPosition(new LatLng(34.415323, -119.843974));
-                    break;
-                case 4:
-                    if (mMarker2 != null)
-                        mMarker2.setPosition(new LatLng(34.411539, -119.847772));
-                    break;
-                case 5:
-                    if (mMarker2 != null)
-                        mMarker2.setPosition(new LatLng(34.416385, -119.84435));
-                    break;
+    public void onNothingSelected(AdapterView<?> adapterView) {
 
-            }
-        }
-
-        @Override
-        public void onNothingSelected(AdapterView<?> adapterView) {
-
-        }
     }
+
 }
 
 
