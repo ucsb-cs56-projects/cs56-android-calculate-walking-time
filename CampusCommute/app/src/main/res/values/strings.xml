@@ -2,4 +2,27 @@
     <string name="google_maps_API_key">AIzaSyAd2o6ZGxPc3RHQFYIV5_z7CyjGyiwPIRA</string>
 
     <string name="app_name">Campus Commute</string>
+
+    <string name="location_prompt">Choose a location</string>
+
+    <string-array name="location_arrays">
+        <item>Harold Frank</item>
+        <item>Buchanan</item>
+        <item>Campbell</item>
+        <item>Phelps</item>
+        <item>HSSB</item>
+        <item>North</item>
+    </string-array>
+
+     /<string name ="location">Choose 2nd location </string>
+    <string name="Calculate">Calculate</string>
+    <string-array name="location">
+        <item>Harold Frank</item>
+        <item>Buchanan</item>
+        <item>Campbell</item>
+        <item>Phelps</item>
+        <item>HSSB</item>
+        <item>North</item>
+    </string-array>
+
 </resources>

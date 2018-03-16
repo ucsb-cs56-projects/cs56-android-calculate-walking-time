@@ -1,49 +1,38 @@
 package ucsb_cs56.campuscommute;
 
+import android.app.AlertDialog;
 import android.app.Dialog;
-import android.content.Intent;
-import android.location.Criteria;
-import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
-import android.support.annotation.NonNull;
-import android.support.v4.app.FragmentActivity;
-import android.support.v7.app.AppCompatActivity;
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.TextView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
-import com.google.android.gms.common.api.Api;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.common.api.PendingResult;
-import com.google.android.gms.common.api.Status;
-import com.google.android.gms.location.LocationRequest;
-import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-import java.io.FileDescriptor;
-import java.io.PrintWriter;
-import java.util.concurrent.TimeUnit;
-
-public class MainActivity extends AppCompatActivity implements OnMapReadyCallback {
+public class MainActivity extends AppCompatActivity implements OnMapReadyCallback, AdapterView.OnItemSelectedListener{
 
     private static final String TAG = "MainActivity";
 
     private static final int ERROR_DIALOG_REQUEST = 9011;
 
     private GoogleMap mGoogleMap;
+
+    private Marker mMarker = null;
+
+    private Marker mMarker2 = null;
 
 
     @Override
@@ -52,6 +41,24 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         setContentView(R.layout.activity_main);
 
         if (isServicesOK()) init();
+        Spinner dropdown = findViewById(R.id.LocationMenu);
+        dropdown.setTag(0);
+        Spinner second = findViewById(R.id.LocationMenu2);
+        second.setTag(1);
+
+        dropdown.setOnItemSelectedListener(this);
+        second.setOnItemSelectedListener(this);
+
+        Button alertButton = findViewById(R.id.button_id);
+        alertButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                builder.setTitle("Time: 3 Minutes");
+                builder.setNegativeButton("Ok", null);
+                AlertDialog alertDialog = builder.create();
+                alertDialog.show();
+            }
+        });
 
     }
 
@@ -78,12 +85,55 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     }
 
     public void onMapReady(GoogleMap googleMap) {
-        LatLng sydney = new LatLng(-33.852, 151.211);
-        googleMap.addMarker(new MarkerOptions().position(sydney)
-                .title("Marker in Sydney"));
-        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 15));
+        LatLng ucsb = new LatLng(34.413963, -119.848946);
+        this.mMarker = googleMap.addMarker(new MarkerOptions().position(ucsb)
+                .title("Marker in UCSB"));
 
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(ucsb, 15));
+        this.mMarker2 = googleMap.addMarker(new MarkerOptions().position(ucsb)
+                .title("2nd Marker in UCSB"));
+    }
+
+    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+        LatLng latlng;
+        switch (i) {
+            case 0:
+                latlng = new LatLng(34.415017, -119.841571);
+                break;
+            case 1:
+                latlng = new LatLng(34.41623, -119.845262);
+                break;
+            case 2:
+                latlng = new LatLng(34.415372, -119.84274);
+                break;
+            case 3:
+                latlng = new LatLng(34.415323, -119.843974);
+                break;
+            case 4:
+                latlng = new LatLng(34.411539, -119.847772);
+                break;
+            case 5:
+                latlng = new LatLng(34.416385, -119.84435);
+                break;
+            default:
+                latlng = new LatLng(34.413963, -119.848946);
+                break;
+        }
+        if((Integer)adapterView.getTag() == 1){
+            mMarker2.setPosition(latlng);
+        }else{
+            mMarker.setPosition(latlng);
+        }
+    }
+
+
+    public void onNothingSelected(AdapterView<?> adapterView) {
 
     }
 
 }
+
+
+
+
+
