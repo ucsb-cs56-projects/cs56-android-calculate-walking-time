@@ -2,7 +2,7 @@
 
 #### Authors: Ajit Vijayakumar and Saagar Parikh 
 
-## W18 Remarks 
+## W18 Final Remarks 
 
 ### Running the Application 
 1. Load the project on Android Studio 
