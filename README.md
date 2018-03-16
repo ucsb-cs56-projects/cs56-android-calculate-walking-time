@@ -1,6 +1,9 @@
 # Campus Commute (Android Application)
 
 #### Authors: Ajit Vijayakumar and Saagar Parikh 
+
+## W18 Final Remarks 
+
 ### Running the Application 
 1. Load the project on Android Studio 
 2. Press "run" (green play button on the top right)
